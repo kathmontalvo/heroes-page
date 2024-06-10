@@ -1,1 +1,35 @@
-<p>hero-page works!</p>
+<ng-template #divLoading>
+  <div class="grid w-full">
+    <div class="flex col-12 justify-content-center align-items-center" [ngStyle]="{height: '80vh'}">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="hero; else divLoading" class="grid p-3 mt-3">
+
+  <mat-card class="col-12 sm:col-3 sm:mr-6">
+    <mat-card-header>
+      <mat-card-title> Information </mat-card-title>
+      <mat-card-subtitle> {{hero.superhero}} </mat-card-subtitle>
+    </mat-card-header>
+
+    <img [src]="hero | heroImage" alt="hero.superhero" mat-card-image height="500px">
+  </mat-card>
+  <mat-card class="col-12 sm:col-8">
+    <mat-list>
+      <mat-list-item> {{ hero.first_appearance }} </mat-list-item>
+      <mat-list-item> {{ hero.characters }} </mat-list-item>
+      <mat-list-item> {{ hero.publisher }} </mat-list-item>
+      <mat-list-item> {{ hero.alter_ego }} </mat-list-item>
+    </mat-list>
+
+    <button
+      mat-button
+      color="warn"
+      (click)="goBack()"
+    >
+      Go to heroes
+    </button>
+  </mat-card>
+</div>
